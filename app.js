@@ -1,4 +1,4 @@
-var arrOfWorkTime = ['09 AM','10 AM','11 AM','12 PM','01 PM','02 PM','03 PM','04 PM','05 PM'];
+var arrOfWorkTime = ['9 AM','10 AM','11 AM','12 PM','1 PM','2 PM','3 PM','4 PM','5 PM'];
 var today = moment();
 var startingTime = moment(today).set({hour: 9}).format('hh a');
 var timeNow = moment().startOf('hour').format('hh a');
@@ -62,7 +62,9 @@ for(let i=0;i<9;i++){
     let newColumn2OfCol3= $('<div class="col-md-6"></div>');
     col3Row.append(newColumn1OfCol3);
     col3Row.append(newColumn2OfCol3);
-
+    let icon = $('<i class="fa fa-save"></i>');
+    icon.addClass('saveBtn');
+    newColumn1OfCol3.append(icon);
 
     //append row to container
     $('.container').append(row);

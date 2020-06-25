@@ -2,7 +2,7 @@ var arrOfWorkTime = ['9 AM','10 AM','11 AM','12 PM','1 PM','2 PM','3 PM','4 PM',
 var today = moment();
 var startingTime = moment(today).set({hour: 9}).format('hh a');
 var timeNow = moment().startOf('hour').format('hh a');
-var planner=[];
+var planner = JSON.parse(localStorage.getItem('planner')) || [];
 
 for(let i=0;i<9;i++){
     let row = $('<div class="row">');
@@ -36,6 +36,9 @@ for(let i=0;i<9;i++){
     //create one column that displays text area
     var textAreaEl = $('<textarea class="col-md col-sm"></textarea>');
     textAreaEl.attr('class','task');
+    if(planner[i]){
+        textAreaEl.text(planner[i]);
+    }
     col2Row.append(textAreaEl);
     if(moment(timeNow,'hh a').format('hh a') == moment(arrOfWorkTime[i],'hh a').format('hh a')){
         col2Row.addClass('present');

@@ -7,6 +7,11 @@ User can add and manage important events on a daily planner
 - You can edit and save hourly task. Data is saved in localStorage.
 - If you launch the application, previously saved task will reflect.
 
+
+```
+Here is screenshot of how it looks.
+```
+
 ![workday scheduler](Assets/final.png)
 
 

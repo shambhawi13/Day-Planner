@@ -5,9 +5,12 @@ $(document).ready(function () {
     createWorkDurationArr(9,9); // starting time is 9am and plan for 9hours a day
 
     var today = moment();
+    var todayFormatted = moment().format('LLLL');
     var startingTime = moment(today).set({ hour: 9 }).format('hh A');
     var timeNow = moment().startOf('hour').format('hh A');
     var planner = JSON.parse(localStorage.getItem('planner')) || [];
+
+    $('#currentDay').text(todayFormatted);
 
     for (let i = 0; i < 9; i++) {
         let row = $('<div class="row">');

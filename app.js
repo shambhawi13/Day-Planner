@@ -2,6 +2,7 @@ var arrOfWorkTime = ['9 AM','10 AM','11 AM','12 PM','1 PM','2 PM','3 PM','4 PM',
 var today = moment();
 var startingTime = moment(today).set({hour: 9}).format('hh a');
 var timeNow = moment().startOf('hour').format('hh a');
+var planner=[];
 
 for(let i=0;i<9;i++){
     let row = $('<div class="row">');
@@ -33,17 +34,16 @@ for(let i=0;i<9;i++){
     //append col2row to col2
     col2.append(col2Row);
     //create one column that displays text area
-    let textAreaEl = $('<textarea class="col-md col-sm"></textarea>');
+    var textAreaEl = $('<textarea class="col-md col-sm"></textarea>');
+    textAreaEl.attr('class','task');
     col2Row.append(textAreaEl);
     if(moment(timeNow,'hh a').format('hh a') == moment(arrOfWorkTime[i],'hh a').format('hh a')){
         col2Row.addClass('present');
     }
     else if(moment(timeNow,'hh a').isAfter(moment(arrOfWorkTime[i],'hh a'))){
-        console.log('After');
         col2Row.addClass('past');
     }
     else if(moment(timeNow,'hh a').isBefore(moment(arrOfWorkTime[i],'hh a'))){
-        console.log('Before');
         col2Row.addClass('future');
     }
 
@@ -64,6 +64,7 @@ for(let i=0;i<9;i++){
     col3Row.append(newColumn2OfCol3);
     let icon = $('<i class="fa fa-save"></i>');
     icon.addClass('saveBtn');
+    icon.attr('data-row',i);
     newColumn1OfCol3.append(icon);
 
     //append row to container
@@ -71,13 +72,9 @@ for(let i=0;i<9;i++){
 
 }
 
-function extractTimeFromString(str){
-    var time;
-    if(str[0] == 0){
-        time = str[1];
-    }
-    else{
-        time = str[0]+str[1];
-    }
-    return time;
-}
+$('.saveBtn').on('click',function(){
+    var rowClicked  = $(this).attr('data-row');
+    var task = $('.task').get(+rowClicked);
+    planner[rowClicked] = $(task).val();
+    localStorage.setItem('planner',JSON.stringify(planner));
+});

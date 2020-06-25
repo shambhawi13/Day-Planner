@@ -3,9 +3,12 @@
 User can add and manage important events on a daily planner
 
 - The application keeps track of daily level events.
+- Your current date is displayed on top.
+- work hours are specified from 9am to 5pm.
+- the time zones are color coded, where gray mean past hours, red means fresent and green means future hours.
 - You can edit fields corresponding to time which helps as remainder of work/meetings that are scheduled
 - You can edit and save hourly task. Data is saved in localStorage.
-- If you launch the application, previously saved task will reflect.
+- If you launch the application, previously saved task will reflect. 
 
 
 ```
